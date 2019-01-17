@@ -38,9 +38,20 @@ router.put('/:id', (req,res) =>{
 
 
 router.delete('/:id', (req, res) =>{
-    console.log(req.params.id);
-    res.send('OK');
+    let index = -1;
+    grades.forEach((grade, idx) => {
+        if (grade.id == req.params.id) {
+            index = idx;
+        }
 
-})
+    });
+    if (index >= 0) {
+        grades.splice(index, 1);
+        res.send('OK')
+    } else {
+        res.send('not found');
+    }
+});
+
 
 module.exports = router;

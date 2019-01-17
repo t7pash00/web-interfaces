@@ -40,10 +40,20 @@ router.put('/:id', (req,res) =>
 
 
 router.delete('/:id', (req, res) =>{
-    res.json(courses);
-    console.log(req.params.id);
-    res.send('OK');
+    let index = -1;
+    courses.forEach((course, idx) => {
+        if (course.id == req.params.id) {
+            index = idx;
+        }
 
-})
+    });
+    if (index >= 0) {
+        courses.splice(index, 1);
+        res.send('OK')
+    } else {
+        res.send('not found');
+    }
+});
+
 
 module.exports = router;
