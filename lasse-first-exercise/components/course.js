@@ -10,14 +10,14 @@ let courses = [
     {
         id: 2,
         name: "Introduction to HTML",
-        address: "A complete beginner to Expert.",
+        description: "A complete beginner to Expert.",
         
 
     },
     {
         id: 3,
         name: "Python Deep Learning",
-        address: "It is the second edition and good as well for the beginners.",
+        description: "It is the second edition and good as well for the beginners.",
         
     }
 ]
@@ -31,13 +31,26 @@ router.post('/', (req, res)=> {
     courses.push(req.body);
     res.send('OK');
 })
-router.put('/:id', (req,res) =>
-{
-    res.json(courses);
-    console.log(req.params.id);
-    res.send('OK');
-})
+router.put('/', (req,res) =>{
+    const course = req.body
+    let modifiedCourse = null;
+    console.log(course);
+    courses.forEach(cou=>{
+        if(cou.id==course.id){
+            cou.name = course.name;
+            cou.description = course.description;
+            
+            modifiedCourse = cou;
 
+        }
+    });
+    if (modifiedCourse) {
+        res.send('OK');
+    } else {
+        res.send('not found');
+    }
+    
+});
 
 router.delete('/:id', (req, res) =>{
     let index = -1;
