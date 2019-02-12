@@ -1,21 +1,22 @@
 const express = require('express');
 let router = express.Router();
 
+let z = 1;
 let courses = [
     {
-        id: 1,
+        id: z++,
         name: "Practical DevOps Security",
         description: "The road to continuous security in development lifecycle. Good for beginners.",
     },
     {
-        id: 2,
+        id: z++,
         name: "Introduction to HTML",
         description: "A complete beginner to Expert.",
         
 
     },
     {
-        id: 3,
+        id: z++,
         name: "Python Deep Learning",
         description: "It is the second edition and good as well for the beginners.",
         

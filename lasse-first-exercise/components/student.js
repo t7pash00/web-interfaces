@@ -1,22 +1,23 @@
 const express = require('express');
 let router = express.Router();
 
+let z = 1;
 let students = [
     {
-        id: 1,
+        id: z++,
         name: "Shambo Pandey",
         address: "Kotkantie 1 Oulu",
         class: "DIN17SP"
     },
     {
-        id: 2,
+        id: z++,
         name: "Nita Björkman",
         address: "Hanhitie 17 Oulu",
         class: "DIN18SP"
 
     },
     {
-        id: 3,
+        id: z++,
         name: "Janne Kodistalo",
         address: "Raksila 17 Oulu",
         class: "DIN18SP"
@@ -26,11 +27,18 @@ let students = [
 
 router.get('/', (req, res) => res.json(students));
 router.post('/', (req, res)=> {
+    const newStudent= {
+        id: z++,
+        name: req.body.name,
+        address: req.body.address,
+        class: req.body.class  
+    }
+    req.body.id =z++;
     //read body data from req
-    console.log(req.body);
+    console.log(newStudent);
 
     //append users data to users array
-    students.push(req.body);
+    students.push(newStudent);
     res.send('OK');
 })
 router.put('/', (req,res) =>{

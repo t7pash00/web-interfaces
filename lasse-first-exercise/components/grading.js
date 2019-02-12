@@ -1,21 +1,22 @@
 const express = require('express');
 let router = express.Router();
 
+let z = 1;
 let grades = [
     {
-        id: 1,
+        id: z++,
         studentid: 1,
         courseid: 2,
         grade: 5
     },
     {
-        id: 2,
+        id: z++,
         studentid: 3,
         courseid: 3,
         grade: 4
     },
     {
-        id: 3,
+        id: z++,
         studentid: 2,
         courseid: 2,
         grade: 3
@@ -31,10 +32,26 @@ router.post('/', (req, res)=> {
     grades.push(req.body);
     res.send('OK');
 })
-router.put('/:id', (req,res) =>{
-    console.log(req.params.id);
-    res.send('OK');
-})
+router.put('/', (req,res) =>{
+    const grade = req.body
+    let modifiedGrade = null;
+    console.log(grade);
+    grades.forEach(grad=>{
+        if(grad.id==grade.id){
+            grad.name = grade.name;
+            grad.description = grade.description;
+            
+            modifiedGrade = grad;
+
+        }
+    });
+    if (modifiedGrade) {
+        res.send('OK');
+    } else {
+        res.send('not found');
+    }
+    
+});
 
 
 router.delete('/:id', (req, res) =>{
