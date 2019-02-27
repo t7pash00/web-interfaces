@@ -33,7 +33,7 @@ router.post('/', (req, res)=> {
         address: req.body.address,
         class: req.body.class  
     }
-    req.body.id =z++;
+    //req.body.id =z++;
     //read body data from req
     console.log(newStudent);
 

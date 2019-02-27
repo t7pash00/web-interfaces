@@ -24,14 +24,24 @@ let courses = [
 ]
 
 router.get('/', (req, res) => res.json(courses));
+
 router.post('/', (req, res)=> {
+    const newCourse= {
+        id: z++,
+        name: req.body.name,
+        description: req.body.description,
+          
+    }
+   // req.body.id =z++;
     //read body data from req
-    console.log(req.body);
+    console.log(newCourse);
 
     //append users data to users array
-    courses.push(req.body);
+    courses.push(newCourse);
     res.send('OK');
 })
+
+
 router.put('/', (req,res) =>{
     const course = req.body
     let modifiedCourse = null;

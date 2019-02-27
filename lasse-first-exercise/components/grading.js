@@ -25,11 +25,19 @@ let grades = [
 
 router.get('/', (req, res) => res.json(grades));
 router.post('/', (req, res)=> {
+    const newGrade= {
+        id: z++,
+        studentid: req.body.studentid,
+        courseid: req.body.courseid,
+        grade: req.body.grade
+          
+    }
+    //req.body.id =z++;
     //read body data from req
-    console.log(req.body);
+    console.log(newGrade);
 
     //append users data to users array
-    grades.push(req.body);
+    grades.push(newGrade);
     res.send('OK');
 })
 router.put('/', (req,res) =>{
@@ -38,8 +46,9 @@ router.put('/', (req,res) =>{
     console.log(grade);
     grades.forEach(grad=>{
         if(grad.id==grade.id){
-            grad.name = grade.name;
-            grad.description = grade.description;
+            grad.studentid = grade.studentid;
+            grad.courseid = grade.courseid;
+            grad.grade = grade.grade
             
             modifiedGrade = grad;
 
